@@ -37,10 +37,13 @@
         // create a firebase reference to the root
         var ref = new Firebase('https://kavya-resume.firebaseio.com/')
 
-        ref.child('Work/Companies').once('value', function(snapshot){
-          var work = snapshot.val()
-          work.forEach(function(work){
-            $('#work').append('<li class="collection-item">' + work + '</li>')
+        ref.child('Work/Companies').once('value', function(comps){
+          comps.forEach(function(comp){
+            compName = comp.key()
+            duties = comp.child("Duties").val();
+            duration = comp.child("Duration").val();
+            $('#work').append('<li class="collection-item"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + compName + '</strong>' + '<p style="margin-left: 60px;">' 
+              + "Duties: " + duties +'</p>' + '<p style="margin-left: 60px;">' + "Duration: " + duration  + '</p>')
           })
         })
 
