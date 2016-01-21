@@ -1,5 +1,5 @@
 {
-  "firebase": "ucdd2-book",
+  "firebase": "kavya-resume",
   "public": "build",
   "ignore": [
     "firebase.json",

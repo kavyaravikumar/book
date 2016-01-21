@@ -17,32 +17,56 @@
 
       <div class="container">
 
-        <h1>Tom Yeh</h1>
+        <h2 align="center">Kavya Ravikumar</h2>
 
-        <h2>Favorite Programming Languages</h2>
-        <ul class="collection">
-          <li class="collection-item">Javascript</li>
-          <li class="collection-item">Haskell</li>
-        </ul>
+        <h4>Education</h4>
+        <ul class="collection" id="edu1">
+        </ul> 
 
-        <h2>Favorite Food</h2>
-        <ul class="collection" id="foods">
+        <h4>Work Experience</h4>
+        <ul class="collection" id="work">
+        </ul>      
+
+        <h4>Technical Skills</h4>
+        <ul class="collection" id="skills">
         </ul>
 
       </div>
 
       <script>
-
         // create a firebase reference to the root
-        var ref = new Firebase('https://hello-ucdd2.firebaseio.com/')
+        var ref = new Firebase('https://kavya-resume.firebaseio.com/')
 
-        // read data from the location bio/favorite_foods, only once
-        ref.child('bio/favorite_foods').once('value', function(snapshot){
-          var foods = snapshot.val()
-          foods.forEach(function(food){
-            $('#foods').append('<li class="collection-item">' + food + '</li>')
+        ref.child('Work/Companies').once('value', function(snapshot){
+          var work = snapshot.val()
+          work.forEach(function(work){
+            $('#work').append('<li class="collection-item">' + work + '</li>')
           })
         })
+
+        ref.child('Education').once('value', function(edus){
+          edus.forEach(function(edu){
+            collName = edu.key()
+            deg = edu.child("Degree").val();
+            gpa = edu.child("GPA").val();
+            duration = edu.child("Duration").val();
+            $('#edu1').append('<li class="collection-item"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + collName + '</strong>' + '<p style="margin-left: 60px;">' 
+              + deg +'</p>' + '<p style="margin-left: 60px;">' + gpa + '</p>' + '<p style="margin-left: 60px;">' + duration  + '</p>')
+          })
+        })
+
+        ref.child('Skills').once('value', function(skills){
+          skills.forEach(function(skill){
+            skillName = skill.key()
+            $('#skills').append('<li class="collection-item"><div><strong>' + skillName + '</strong>')
+            var indSkills = skill.val()
+            indSkills.forEach(function(sk){
+              $('#skills').append('<p style="margin-left: 50px;">' + sk + '</p>')
+            })
+            $('#skills').append('</div></li>')
+          })
+        })
+
       </script>
     </body>
   </html>
