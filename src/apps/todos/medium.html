@@ -1,1 +1,72 @@
-TODO
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+
+      <div class="container">
+
+        <h2 align="center">Kavya Ravikumar</h2>
+
+        <h4>Education</h4>
+        <ul class="collection" id="edu1">
+        </ul> 
+
+        <h4>Work Experience</h4>
+        <ul class="collection" id="work">
+        </ul>      
+
+        <h4>Technical Skills</h4>
+        <ul class="collection" id="skills">
+        </ul>
+
+      </div>
+
+      <script>
+        // create a firebase reference to the root
+        var ref = new Firebase('https://kavya-resume.firebaseio.com/')
+
+        ref.child('Work/Companies').once('value', function(snapshot){
+          var work = snapshot.val()
+          work.forEach(function(work){
+            $('#work').append('<li class="collection-item">' + work + '</li>')
+          })
+        })
+
+        ref.child('Education').once('value', function(edus){
+          edus.forEach(function(edu){
+            collName = edu.key()
+            deg = edu.child("Degree").val();
+            gpa = edu.child("GPA").val();
+            duration = edu.child("Duration").val();
+            $('#edu1').append('<li class="collection-item"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + collName + '</strong>' + '<p style="margin-left: 60px;">' 
+              + deg +'</p>' + '<p style="margin-left: 60px;">' + gpa + '</p>' + '<p style="margin-left: 60px;">' + duration  + '</p>')
+          })
+        })
+
+        ref.child('Skills').once('value', function(skills){
+          skills.forEach(function(skill){
+            skillName = skill.key()
+            $('#skills').append('<li class="collection-item"><div><strong>' + skillName + '</strong>')
+            var indSkills = skill.val()
+            indSkills.forEach(function(sk){
+              $('#skills').append('<p style="margin-left: 50px;">' + sk + '</p>')
+            })
+            $('#skills').append('</div></li>')
+          })
+        })
+
+      </script>
+    </body>
+  </html>

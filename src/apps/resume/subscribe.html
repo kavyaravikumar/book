@@ -41,16 +41,28 @@
 
       <script>
 
+        var ref = new Firebase('https://kavya-resume.firebaseio.com/')
+
+        var subRef = ref.child("subscribers")
+
+        //Code to retrieve the email ID entered and store it in the database
         $('#submit').click(function(){
           console.log('the submit button is clicked')
-
-          // TODO: add code to submit an email address to your own Firebase
+          var emailID = $('#email').val()
+          subRef.push({
+            email: emailID
+          })
 
         })
 
-
-        // TODO: add code to pull emaill addresses from your own Firebase,
-        // and populate "#emails" with these email addresses
+        //Code to retrieve the subscribers email addresses from the database and display it
+        ref.child('subscribers').on('value', function(snapshot){
+          $('#emails').empty();
+          snapshot.forEach(function(eachSub){
+            s = eachSub.child("email").val();
+            $('#emails').append(s+'<br>')
+          })
+        })
 
 
       </script>

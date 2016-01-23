@@ -19,6 +19,8 @@
 
         <h2 align="center">Kavya Ravikumar</h2>
 
+        <div align="center"><a class="waves-effect waves-light btn" href="subscribe.html">Subscribe</a></div>
+
         <h4>Education</h4>
         <ul class="collection" id="edu1">
         </ul> 
@@ -29,6 +31,16 @@
 
         <h4>Technical Skills</h4>
         <ul class="collection" id="skills">
+        </ul>
+
+        <ul class="collapsible" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">Task List</div>
+            <div class="collapsible-body">
+              <ul class="collection" id="tasks">
+              </ul>
+            </div>
+          </li>
         </ul>
 
       </div>
@@ -67,6 +79,20 @@
               $('#skills').append('<p style="margin-left: 50px;">' + sk + '</p>')
             })
             $('#skills').append('</div></li>')
+          })
+        })
+
+        var taskRef = new Firebase('https://shining-fire-9960.firebaseio.com/');
+        taskRef.child('todos/tasks').once('value', function(tasks){
+          tasks.forEach(function(task){
+            if(task.child("assigned").val() == 'Kavya Ravikumar'){
+              title = task.child("title").val();
+              type = task.child("type").val();
+              priority = task.child("priority").val();
+              deadline = task.child("deadline").val();
+              $('#tasks').append('<li class="collection-item"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + title + '</strong>' + '<div style="margin-left: 60px;">' 
+              + "Type: " + type + "<br>" + "Priority: " + priority  + "<br>" + "Deadline: " + deadline  + '</div>')
+            }
           })
         })
 
