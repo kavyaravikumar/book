@@ -18,30 +18,42 @@
       <div class="container">
 
         <h2 align="center">Kavya Ravikumar</h2>
+        <ul class="collection" id="contact"></ul>
+        <br><br>
 
         <div align="center"><a class="waves-effect waves-light btn" href="subscribe.html">Subscribe</a></div>
 
-        <h4>Education</h4>
-        <ul class="collection" id="edu1">
-        </ul> 
-
-        <h4>Work Experience</h4>
-        <ul class="collection" id="work">
-        </ul>      
-
-        <h4>Technical Skills</h4>
-        <ul class="collection" id="skills">
-        </ul>
-
         <ul class="collapsible" data-collapsible="accordion">
-          <li>
-            <div class="collapsible-header">Task List</div>
+    <li>
+      <div class="collapsible-header"><div class="card-panel grey lighten-2"><div class="card-content black-text" align="center" style="font-size: 1.4em;"><strong>Education</strong></div></div></div>
+      <div class="collapsible-body">
+              <ul class="collection" id="edu1">
+              </ul>
+            </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><div class="card-panel grey lighten-2"><div class="card-content black-text" align="center" style="font-size: 1.4em;"><strong>Work Experience</strong></div></div></div>
+      <div class="collapsible-body">
+              <ul class="collection" id="work">
+              </ul>
+            </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><div class="card-panel grey lighten-2"><div class="card-content black-text" align="center" style="font-size: 1.4em;"><strong>Technical Skills</strong></div></div></div>
+      <div class="collapsible-body">
+              <ul class="collection" id="skills">
+              </ul>
+            </div>
+    </li>
+
+    <li>
+            <div class="collapsible-header"><div class="card-panel grey lighten-2"><div class="card-content black-text" align="center" style="font-size: 1.4em;"><strong>Task List</strong></div></div></div>
             <div class="collapsible-body">
               <ul class="collection" id="tasks">
               </ul>
             </div>
           </li>
-        </ul>
+  </ul>
 
       </div>
 
@@ -54,8 +66,8 @@
             compName = comp.key()
             duties = comp.child("Duties").val();
             duration = comp.child("Duration").val();
-            $('#work').append('<li class="collection-item"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + compName + '</strong>' + '<p style="margin-left: 60px;">' 
-              + "Duties: " + duties +'</p>' + '<p style="margin-left: 60px;">' + "Duration: " + duration  + '</p>')
+            $('#work').append('<li class="collection-item"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + compName + '</strong>' + '<div style="margin-left: 60px;">' 
+              + "Duties: " + duties +'<br>' + "Duration: " + duration  + '</div>')
           })
         })
 
@@ -65,8 +77,8 @@
             deg = edu.child("Degree").val();
             gpa = edu.child("GPA").val();
             duration = edu.child("Duration").val();
-            $('#edu1').append('<li class="collection-item"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + collName + '</strong>' + '<p style="margin-left: 60px;">' 
-              + deg +'</p>' + '<p style="margin-left: 60px;">' + gpa + '</p>' + '<p style="margin-left: 60px;">' + duration  + '</p>')
+            $('#edu1').append('<li class="collection-item"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + collName + '</strong>' + '<div style="margin-left: 60px;">' 
+              + "Degree: " + deg +'<br>' + "GPA: " + gpa + '<br>' + "Duration: " + duration  + '</div>')
           })
         })
 
@@ -76,11 +88,19 @@
             $('#skills').append('<li class="collection-item"><div><strong>' + skillName + '</strong>')
             var indSkills = skill.val()
             indSkills.forEach(function(sk){
-              $('#skills').append('<p style="margin-left: 50px;">' + sk + '</p>')
+              $('#skills').append('<div style="margin-left: 50px;">' + sk + '<br>' + '</div>')
             })
             $('#skills').append('</div></li>')
           })
         })
+
+        ref.child('Contact').once('value', function(snapshot){
+          var c = snapshot.val()
+          $('#contact').append()
+          snapshot.forEach(function(con){
+            $('#contact').append('<div align="center" class="collection-item" style="margin-left: 50px; border: transparent">' + con.key() + " : " + con.val() + '</div>')
+          })
+        }) 
 
         var taskRef = new Firebase('https://shining-fire-9960.firebaseio.com/');
         taskRef.child('todos/tasks').once('value', function(tasks){
