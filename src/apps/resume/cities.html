@@ -15,6 +15,15 @@
     </head>
 
     <body>
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">UCCD II - 2016</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="index.html">Resume</a></li>
+      </ul>
+    </div>
+  </nav>
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
@@ -24,59 +33,97 @@
 
       <div class="container">
 
-        <h1>My Favoirte Cities</h1>
-        <div id="cities"></div>
-        <div id="map" style="height:500px"></div>
-      </div>
+        <h4 align="center">My Favorite Cities</h4>
+        <h1></h1>
+        <h1></h1>
+        <h1></h1>
+
+        <a class='dropdown-button btn' href='#' data-activates='dropdown1' >Select city</a>
+
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a onclick="city(0)">Denver</a></li>
+          <li><a onclick="city(1)">Seattle</a></li>
+          <li><a onclick="city(2)">San Francisco</a></li>
+          <li><a onclick="city(3)">San Diego</a></li>
+          <li><a onclick="city(4)">New York</a></li>
+        </ul>
+
+        <h1></h1>
+        <h1></h1>
+        <h1></h1>
+        <h1></h1>
+
+         <p>Scroll down to see the weather icon on the map after selecting the city!</p>
+         <div id="cities"></div>
+        
+        <div id="map" style="height:500px"></div> 
+
+        <div id="alerts"></div>
 
       <script>
-
-// create a firebase reference to the root
-var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com/austin');
-
-var data
-
-// read data from only once
-weatherRef.once('value', function(snapshot){
-  var city = snapshot.val()
-  mapCity(city)
-  displayCity(city, 'austin')
-})
-
-var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
+      var cities = ["denver", "seattle", "sanfrancisco", "sandiego", "newyork"];
+      var weatherRefArray = []
 
 // initialzie the map
 var map = L.map($('#map')[0]).setView([39.50, -98.35], 4)
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: attributionText,
-    maxZoom: 18,
-    id: 'doubleshow.noeko77m',
-    accessToken: 'pk.eyJ1IjoiZG91Ymxlc2hvdyIsImEiOiJjaWZ5Y3B1eTE1MHRidWRtMG9uZXluajg4In0.u5ONW27Ly5cU7M5KYi6Y9Q'
-}).addTo(map)
 
 // create a layer group to hold all the markers
 var markersLayerGroup = L.layerGroup()
 // add the makers layer group to the map
 markersLayerGroup.addTo(map)
 
+function city(index) {
+  var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com/'+cities[index])
+  weatherRef.on('value', function(snapshot){
+    var ci = snapshot.val()
+    mapCity(ci, cities[index])
+    displayCity(ci, cities[index])
+  })
+}
+
+var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
+
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: attributionText,
+    maxZoom: 18,
+    id: 'kavyaravikumar.p19j18ab',
+    accessToken: 'pk.eyJ1Ijoia2F2eWFyYXZpa3VtYXIiLCJhIjoiY2lrMDZxaTh3MDFoOXhia29zbzF4dmRhMyJ9.XN9Vk6-IwacErT765eYpWw'
+}).addTo(map)
+
 // visualize cities on the map
-function mapCity(city){
-  console.log('mapCity', city)
+function mapCity(city, cityName){
+  $('#cities').empty()
+  markersLayerGroup.clearLayers()
   var latlng = [city.latitude, city.longitude]
-  var circle = L.circle(latlng, 10, {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.5
-  }).bindLabel('Austin')
+
+  var myIcon = L.icon({
+    iconUrl: 'images/'+city.currently.icon+'.png',
+    iconSize: [40, 40],
   
-  markersLayerGroup.addLayer(circle)
+  });
+
+  var marker = L.marker(latlng,{icon: myIcon}).addTo(map);
+
+  marker.bindLabel('<div style="text-transform: capitalize;">' + cityName + '<br>' + city.currently.apparentTemperature + ' &#x2109;' + '<br>' +city.currently.summary + '</div>');
+
+  markersLayerGroup.addLayer(marker)
 }
 
 function displayCity(city, name){
-  console.log('displayCity', city)
-  $('#cities').append('<li class="collection-item">' + name +
-    ' humidity = ' +
-    JSON.stringify(city.currently) + '</li>')
+    $('#cities').empty()
+    $('#cities').append('<div class="collection-item" style="text-transform: capitalize;"><strong>' + name + '<br>' + city.currently.summary + '</strong>' +'<p style="margin-left: 30px;"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + city.daily.summary + '</strong>'+ '<br>' +'Temperature: ' + city.currently.apparentTemperature + ' &#x2109;' +'<br>' + 'Humidity: ' + city.currently.humidity + '<br>' + 'Precipity: ' + city.currently.precipProbability + '<br>' + 'Wind Speed: ' + city.currently.windSpeed + '</div></div></p></div>')
+
+    if(typeof(city.alerts)!="undefined") {
+      city.alerts.forEach(function(alert){
+        console.log(alert.description)
+        $('#cities').empty()
+        $('#cities').append('<div class="collection-item" style="text-transform: capitalize;"><strong>' + name + '<br>' + city.currently.summary + '</strong>' +'<p style="margin-left: 30px;"><div class="card-panel cyan lighten-4"><div class="card-content black-text"><strong>' + city.daily.summary + '</strong>'+ '<br>' +'Temperature: ' + city.currently.apparentTemperature + ' &#x2109;' +'<br>' + 'Humidity: ' + city.currently.humidity + '<br>' + 'Precipity: ' + city.currently.precipProbability + '<br>' + 'Wind Speed: ' + city.currently.windSpeed + '</div></div></p></div>')
+        $('#cities').append("There is an ALERT for this region. Scroll below the map to see more information!")
+        $('#alerts').empty()
+        $('#alerts').append('<div class="card-panel red darken-1"><div class="card-content white-text">' +alert.description + '</div></div>')
+      })
+    }
 }
 
       </script>
