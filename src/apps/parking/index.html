@@ -1,61 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
-  <style>
-  .container ul li {
-      list-style-type: circle;
-      padding-left: 10px;
-      margin-left: 30px;
-  }
-  h2 {
-    border-bottom: solid #ccc 1px;
-  }
-  h3 {
-    font-style: italic;
-  }
-  code {
-    border: 1px #ddd solid;
-  }
-  </style>
-</head>
-<body>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo right">UCCD II - 2016</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="/">Home</a></li>
-      </ul>
-    </div>
-  </nav>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
-  <div class="container flow-text">
-  <h1 id="book">Book</h1>
-<p>Everything I’ve learned from UCDD 2 - Spring 2016.</p>
-<h2 id="apps">Apps</h2>
-<ul>
-<li><a href="apps/todos/">ToDos</a></li>
-<li><a href="apps/resume/">Resume</a></li>
-<li><a href="apps/parking/">Parking</a></li>
-<li><a href="apps/resume/cities.html">My Favourite Cities</a></li>
-</ul>
-<h2 id="learning">Learning</h2>
-<ul>
-<li><a href="learning/intro">Intro</a></li>
-<li><a href="learning/week1">Week 1</a></li>
-<li><a href="learning/week2">Week 2</a></li>
-<li><a href="learning/week3">Week 3</a></li>
-</ul>
-<h2 id="hackathons">Hackathons</h2>
-<ul>
-<li><a href="hackathons/01-18">01-18</a></li>
-<li><a href="hackathons/01-25">01-25</a></li>
-</ul>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
 
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-</body>
-</html>
+    <style>
+    html {
+        font-family: GillSans, Calibri, Trebuchet, sans-serif;
+        background: url(images/sf2.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    </style>
+
+    <body style="display: flex; min-height: 100vh; flex-direction: column;">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+
+      <nav class="transparent">
+        <div class="nav-wrapper">
+          <ul class="left">
+            <li><a href="/" class="black-text">Home</a></li>
+          </ul>
+          <a href="/apps/parking/index.html" class="brand-logo center black-text">
+            <img class="responsive-img" id="logo" src="images/asia.png" alt="Team Asia logo." style="max-height: 55px; position: relative; transform: translateY(10%);"/>
+          </a>
+        </div>
+      </nav>
+
+      <main class="section transparent center" style="flex: 1 0 auto;">
+        <div class="row container">
+          <h3 class="header">San Francisco Parking Garages</h3>
+          <p class="grey-text text-darken-3 lighten-3">A simple parking garage app that displays information on open parking garages.</p>
+          <h1> </h1>
+          <div class="row" style="opacity: 0.80;">
+            <a href="garages.html">
+              <div class="col s12 m6">
+                <div class="small card hoverable white darken-4">
+                  <i class="large material-icons black-text" style="margin-top: 30px">list</i>
+                  <div class="card-content black-text">
+                    <span class="card-title">List of Garages</span>
+                    <p>A realtime list of open garages, their rates, and weekly schedules.</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="garages_map.html">
+              <div class="col s12 m6">
+                <div class="small card hoverable blue-grey darken-4">
+                  <i class="large material-icons white-text" style="margin-top: 30px">location_on</i>
+                  <div class="card-content white-text">
+                    <span class="card-title">Garage Map</span>
+                    <p>A realtime map of open garages, their rates, and daily schedules.</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <footer class="transparent page-footer">
+        <div class="footer-copyright">
+          <div class="container black-text">
+          Caleb Hsu, Bader AlShumimiry, Yen-Teh Liu, Varshini Jagannath, Kavya Ravikumar
+          <a class="right" href="https://github.com/calebhsu/book-1">GitHub</a>
+          </div>
+        </div>
+      </footer> 
+    </body>   
+
+  </html>

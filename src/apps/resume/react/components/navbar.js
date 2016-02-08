@@ -3,9 +3,12 @@ MyComponents.NavBar = React.createClass({
     return (
       <nav>
         <div className="nav-wrapper">
-        <a href="#" className="brand-logo">My Name</a>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li><a href="#skills-heading">Skills</a></li>
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+        <a href="/apps/resume/react" className="brand-logo center">Kavya Ravikumar</a>
+        <ul id="nav-mobile" className="right">
+          <li><a href="#skills">Skills</a></li>
           <li><a href="#tasks-heading">Tasks</a></li>
           <li><a href="#cities-heading">Cities</a></li>          
         </ul>
@@ -14,3 +17,5 @@ MyComponents.NavBar = React.createClass({
     );
   }
 });
+
+
