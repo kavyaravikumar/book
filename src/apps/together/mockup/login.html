@@ -19,28 +19,53 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-      <nav class="navbar-fixed-top">
-        <div class="nav-wrapper orange darken-3 ">
-          <div class="container">
-          <ul class="left hide-on-med-and-down">
-        <li><a href="index.html" class="brand-logo" style="font-size: 12px"><strong>HOME</strong></a></li>
-        
-        </ul>
-            <a href="index.html" class="brand-logo center">PROJECT COLLABORATION TOOL</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-				<li><a href="login.html" style="font-size: 12px"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
-				<li><a href="about.html" class="brand-logo" style="font-size: 12px"><strong>ABOUT</strong></a></li>
-		    </ul>
-            <ul class="side-nav" id="mobile-demo">
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <nav>
+<div class="nav-wrapper orange darken-3 ">
+      <a href="index.html" class="brand-logo center">PROJECT COLLABORATION TOOL</a>
+        <ul class="left hide-on-med-and-down" >
+        <li><a href="index.html"><strong>HOME</strong></a></li>
+        <li><a href="login.html"><strong>LOGIN</strong></a></li>
+        <li><a href="about.html"><strong>ABOUT</strong></a></li>
+    </ul>
+
+    <ul class="right hide-on-med-and-down" >
+        <li><a class="modal-trigger" href="#announcement"><i class="material-icons">message</i></a></li>
+    </ul>
+    <ul id="slide-out" class="side-nav">
+        <li><a href="index.html"><strong>HOME</strong></a></li>
+        <li><a href="login.html"><strong>LOGIN</strong></a></li>
+        <li><a href="about.html"><strong>ABOUT</strong></a></li>
+        <li><a <a class="modal-trigger" href="#announcement"><i class="material-icons">message</i></a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+</nav>
+
+<div id="announcement" class="modal modal-fixed-footer" style="overflow:scroll; height:250px;">
+    <div class="modal-content blue-grey lighten-4 orange-text text-darken-3">
+      <h4>Announcements</h4>
+      <p><ul>
+      <li>You have been added as an collaborator for a new project: <a href="submittedForm.html">Project Collaboration</a></li>
+      <li>You have been assigned a new task: <a href="viewTasks.html">Project Collaboration</a></li>
+      </ul></p>
+    </div>
+    <div class="modal-footer ">
+      <a href="#!" class=" modal-action modal-close btn blue-grey lighten-5 orange-text text-darken-3"><strong>Cancel</strong></a>
+    </div>
+  </div>
+
+<script>
+
+$(".button-collapse").sideNav();
+
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+</script>
 
       
       
-      <div class="container grey darken-4" align="center" style="width: 450px; margin-left: 400px; margin-top:200px;">
+      <div class="container grey darken-4" align="center" style="width: 40%; margin-left: 30%; margin-top:14%;">
         <form action="existingProjects.html" class="orange-text text-darken-3">
               Username: <input type="text" name="username"><br>
               Password: <input type="password" name="pwd"><br>

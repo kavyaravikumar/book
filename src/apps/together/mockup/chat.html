@@ -12,6 +12,35 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	  
 </head>
+<style>
+/* label color */
+   .input-field label {
+     color: #ef6c00;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: #ef6c00;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid #ef6c00;
+     box-shadow: 0 1px 0 0 #ef6c00;
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid #ef6c00;
+     box-shadow: 0 1px 0 0 #ef6c00;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid #ef6c00;
+     box-shadow: 0 1px 0 0 #ef6c00;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #ef6c00;
+   }
+</style>
 <body background="images/lib1.jpg">
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
@@ -19,29 +48,54 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-      <nav class="navbar-fixed-top">
-        <div class="nav-wrapper orange darken-3 ">
-          <div class="container">
-          <ul class="left hide-on-med-and-down">
-        <li><a href="index.html" class="brand-logo" style="font-size: 12px"><strong>HOME</strong></a></li>
-        
-        </ul>
-            <a href="index.html" class="brand-logo center">PROJECT COLLABORATION TOOL</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-				<li><a href="user/index.html" style="font-size: 12px"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
-		    <li><a href="about.html" class="brand-logo" style="font-size: 12px"><strong>ABOUT</strong></a></li>
-        </ul>
-            <ul class="side-nav" id="mobile-demo">
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <nav>
+<div class="nav-wrapper orange darken-3 ">
+      <a href="index.html" class="brand-logo center">PROJECT COLLABORATION TOOL</a>
+        <ul class="left hide-on-med-and-down" >
+        <li><a href="index.html"><strong>HOME</strong></a></li>
+        <li><a href="login.html"><strong>LOGIN</strong></a></li>
+        <li><a href="about.html"><strong>ABOUT</strong></a></li>
+    </ul>
+
+    <ul class="right hide-on-med-and-down" >
+        <li><a class="modal-trigger" href="#announcement"><i class="material-icons">message</i></a></li>
+    </ul>
+    <ul id="slide-out" class="side-nav">
+        <li><a href="index.html"><strong>HOME</strong></a></li>
+        <li><a href="login.html"><strong>LOGIN</strong></a></li>
+        <li><a href="about.html"><strong>ABOUT</strong></a></li>
+        <li><a <a class="modal-trigger" href="#announcement"><i class="material-icons">message</i></a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+</nav>
+
+<div id="announcement" class="modal modal-fixed-footer" style="overflow:scroll; height:250px;">
+    <div class="modal-content blue-grey lighten-4 orange-text text-darken-3">
+      <h4>Announcements</h4>
+      <p><ul>
+      <li>You have been added as an collaborator for a new project: <a href="submittedForm.html">Project Collaboration</a></li>
+      <li>You have been assigned a new task: <a href="viewTasks.html">Project Collaboration</a></li>
+      </ul></p>
+    </div>
+    <div class="modal-footer ">
+      <a href="#!" class=" modal-action modal-close btn blue-grey lighten-5 orange-text text-darken-3"><strong>Cancel</strong></a>
+    </div>
+  </div>
+
+<script>
+
+$(".button-collapse").sideNav();
+
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+</script>
 
       
       <div class="container" style="margin-top:200px;">
         <div class="row">
-          <div class="col s6">
+          <div class="col s6" style="overflow:scroll; height: 450px;">
             <div class="card small grey darken-3 orange-text text-darken-3">
               <div class="card-title center">
                 <span class="orange-text text-darken-3"><strong>Collaborators</strong></span>
@@ -55,26 +109,31 @@
               </div>
             </div>
           </div>
-          <div class="col s6">
+          <div class="col s6" style="overflow:scroll; height: 450px;">
             <div class="card small grey darken-3 orange-text text-darken-3">
-              <br/><br/>
-              <p align="left" style="margin-left:20px;"><strong>Carter:</strong> Hi! Anyone there? </p>
+              <br>
+              <p align="left" style="margin-left:5%;"><strong>Carter:</strong> Hi! Anyone there? </p>
               <br/>
-              <p align="left" style="margin-left:20px;"><strong>Loretta:</strong> Hi! </p>
+              <p align="left" style="margin-left:5%;"><strong>Loretta:</strong> Hi! </p>
               <br/>
-              <p align="right" style="margin-right:20px;"><strong>Me:</strong> Hi! </p>
+              <p align="right" style="margin-right:5%;"><strong>Me:</strong> Hi! </p>
               <br/><br/><br/><br/><br/>
               <!-- <p class="white orange-text text-darken-3" style="margin-left:20px;margin-right:20px;"><label for="last_name">&nbsp;&nbsp;Enter your message here!</label></p> -->
               <div class="row">
-                <div class="col s10" style="margin-left: 20px;">
-              <em>Enter your message here!</em><input type="text" name="msg"> </div>
+                <div class="input-field col s6">
+          <input  id="first_name" type="text" class="validate" style="margin-left:5%;">
+          <label for="first_name" style="margin-left:5%;">Enter your message here!</label>
+        </div>
               <div>
-              <button class="btn waves-effect waves-light orange darken-3" type="submit"><a href="chat1.html">
+              <button class="btn waves-effect waves-light orange darken-3" style="margin-left:35%;" type="submit"><a href="chat1.html">
     <i class="material-icons center white-text">send</i></a></button></div>
+    <div class="col s9"><strong><em>Kavya is typing...</em></strong></div>
     </div>
+    
             </div>
           </div>
         </div>
+        
       </div>
 	  
 </body>

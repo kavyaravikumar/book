@@ -19,36 +19,79 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-      <nav class="navbar-fixed-top">
-        <div class="nav-wrapper orange darken-3 ">
-          <div class="container">
-            <ul class="left hide-on-med-and-down">
-        <li><a href="index.html" class="brand-logo" style="font-size: 12px">HOME</a></li>
-        </ul>
-            <a href="index.html" class="brand-logo center">PROJECT COLLABORATION TOOL</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-				<li><a href="user/index.html" style="font-size: 12px"><span class="glyphicon glyphicon-user"></span>LOGIN</a></li>
-        <li><a href="about.html" class="brand-logo" style="font-size: 12px"><strong>ABOUT</strong></a></li>
-		    </ul>
-            <ul class="side-nav" id="mobile-demo">
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <nav>
+<div class="nav-wrapper orange darken-3 ">
+      <a href="index.html" class="brand-logo center">PROJECT COLLABORATION TOOL</a>
+        <ul class="left hide-on-med-and-down" >
+        <li><a href="index.html"><strong>HOME</strong></a></li>
+        <li><a href="login.html"><strong>LOGIN</strong></a></li>
+        <li><a href="about.html"><strong>ABOUT</strong></a></li>
+    </ul>
+
+    <ul class="right hide-on-med-and-down" >
+        <li><a class="modal-trigger" href="#announcement"><i class="material-icons">message</i></a></li>
+    </ul>
+    <ul id="slide-out" class="side-nav">
+        <li><a href="index.html"><strong>HOME</strong></a></li>
+        <li><a href="login.html"><strong>LOGIN</strong></a></li>
+        <li><a href="about.html"><strong>ABOUT</strong></a></li>
+        <li><a <a class="modal-trigger" href="#announcement"><i class="material-icons">message</i></a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+</nav>
+
+<div id="announcement" class="modal modal-fixed-footer" style="overflow:scroll; height:250px;">
+    <div class="modal-content blue-grey lighten-4 orange-text text-darken-3">
+      <h4>Announcements</h4>
+      <p><ul>
+      <li>You have been added as an collaborator for a new project: <a href="submittedForm.html">Project Collaboration</a></li>
+      <li>You have been assigned a new task: <a href="viewTasks.html">Project Collaboration</a></li>
+      </ul></p>
+    </div>
+    <div class="modal-footer ">
+      <a href="#!" class=" modal-action modal-close btn blue-grey lighten-5 orange-text text-darken-3"><strong>Cancel</strong></a>
+    </div>
+  </div>
+
+<script>
+
+$(".button-collapse").sideNav();
+
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+</script>
 
       
 
-      <div class="container grey darken-3" style="margin-top:200px; width=60px">
+      <div class="container grey darken-3" style="margin-top:10%; width:90%; height:450px; overflow: scroll;">
       	<h3 class="orange-text text-darken-3 center">Project Collaboration</h3>
+        
         <div class="row"> 
+
+          <div class="col s4">
+            <div class="card grey lighten-1">
+              <div class="card-content">
+                <div class="row">
+                  <div class="col s9">
+                    <div><strong>Name: </strong>Resize the web pages</div>
+                    <div><strong>Summary:</strong> Resize or reformat the pages to a given size</div>
+                    <div><strong>Deadline:</strong> 02/21/2016</div>
+                    <div><strong>Assigned To:</strong>&nbsp;Kavya</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="col s4">
             <div class="card grey lighten-1">
               <div class="card-content">
                 <div class="row">
                   <div class="col s9">
                     <div><strong>Name:</strong> Create the login page </div>
-                    <div><strong>Duties:</strong> Developing an authentication module</div>
+                    <div><strong>Summary:</strong> Developing an authentication module to validate the user</div>
                     <div><strong>Deadline:</strong> 02/15/2016</div>
                     <div><strong>Assigned To:</strong>&nbsp;Loretta</div>
                   </div>
@@ -87,15 +130,21 @@
               </div>
             </div>
           </div>
+
+          <div class="row orange-text text-darken-3"><div class="col s8"><strong><em>Kavya added the task "Resize the web pages"</em></strong></div></div>
         </div>
 
-        <br/>
-        <br/>
 
-        <button class="btn waves-effect waves-light orange darken-3" align="center"><a href="addTask.html" class="white-text">Add a new task</a>
-    <i class="material-icons right">send</i></button>
+        <br/>
+        <br/>
+      </div>
+
+
+      <div class="container " style="margin-top:2%;">
+        <button class="btn waves-effect waves-light grey darken-3" align="center" style="margin-left:40%;"><a href="addTask.html" class="orange-text text-darken-3">Add a new task</a>
+    <i class="material-icons right orange-text text-darken-3">send</i></button>
     <br/><br/>
-    <button class="btn waves-effect waves-light orange darken-3" align="center"><a href="chat.html" class="white-text">Chat with your project-mates!</a>
+    <button class="btn waves-effect waves-light grey darken-3" align="center" style="margin-left:40%;"><a href="chat.html" class="orange-text text-darken-3">Chat with your project-mates!</a>
     </button>
     <br/><br/>
       </div>
