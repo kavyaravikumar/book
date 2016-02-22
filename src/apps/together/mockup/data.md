@@ -7,6 +7,7 @@ layout: layout.hbs
 ## **Users**
 - This data model consists of all the users who will be collaborating on a single project.
 - Users can create new projects, view all their existing projects, and create new tasks for the projects they are a collaborator of.
+
 	```
 	Users
 	- Name
@@ -18,6 +19,7 @@ layout: layout.hbs
 - This includes all the projects that the user is a collaborator of.
 - It will also include other details of the project like the project name itself and the tasks under the project.
 - This data model also lists all the projects that user is a part of.
+	
 	```
 	Projects
 	- Project title
@@ -28,6 +30,7 @@ layout: layout.hbs
 ## **Tasks**
 - The project data model will consist of the tasks data model.
 - This will have all the tasks that are created by the user for a particular project.
+	
 	```
 	Tasks
 	- Task Name
