@@ -9,10 +9,10 @@ layout: layout.hbs
 - Users can create new projects, view all their existing projects, and create new tasks for the projects they are a collaborator of.
 
   ```
-	Users
-	- Name
-	- Email
-    - Contact Number
+  Users
+  - Name 
+  - Email
+  - Contact Number
   ```
 
 ## **Projects**
@@ -21,10 +21,10 @@ layout: layout.hbs
 - This data model also lists all the projects that user is a part of.
 	
   ```
-	Projects
-	- Project title
-	- Collaborators
-	- Tasks
+  Projects
+  - Project title
+  - Collaborators
+  - Tasks
   ```
 
 ## **Tasks**
@@ -32,11 +32,11 @@ layout: layout.hbs
 - This will have all the tasks that are created by the user for a particular project.
 	
   ```
-	Tasks
-	- Task Name
-	- Duties
-	- Deadline
-	- Assigned To
+  Tasks
+  - Task Name
+  - Duties
+  - Deadline
+  - Assigned To
   ```
 
 ## **Revision**
