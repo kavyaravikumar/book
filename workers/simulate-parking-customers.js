@@ -38,30 +38,24 @@ function simulate(){
 
 function enter(person){
   console.log('enter', person)
-  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com')
-  var customer = ref.child(person.name).set(person)
-
-  // TODO: put this person in the Firebase
-  // var ref = new Firebase('your-firebase-url')
-  // ...
+  // put this person in the Firebase
+  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com/')
+  ref.child(person.name).set(person)
 }
 
 function leave(person){
   console.log('leave', person)
-  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com')
+  // remove this person from the Firebase
+  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com/')
   ref.child(person.name).remove()
-  // TODO: remove this person from the Firebase
-  // var ref = new Firebase('your-firebase-url')
-  // ...
+
 }
 
 
 function clear(){
-  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com')
+  // remove all people from the Firebase
+  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com/')
   ref.remove()
-  // TODO: remove all people from the Firebase
-  // var ref = new Firebase('your-firebase-url')
-  // ...
 }
 
 
